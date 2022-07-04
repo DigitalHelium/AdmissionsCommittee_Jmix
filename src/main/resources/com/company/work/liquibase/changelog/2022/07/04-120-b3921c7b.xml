@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="Work">
+        <addColumn tableName="STUDENT_RATING">
+            <column name="MORKOVKA_ID" type="UUID"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="Work">
+        <createIndex indexName="IDX_STUDENTRATING_MORKOVKA_ID" tableName="STUDENT_RATING">
+            <column name="MORKOVKA_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="MORKOVKA_ID" baseTableName="STUDENT_RATING"
+                                 constraintName="FK_STUDENT_RATING_ON_MORKOVKA" referencedColumnNames="ID"
+                                 referencedTableName="MORKOVKA"/>
+    </changeSet>
+    <changeSet id="3" author="Work">
+        <dropColumn columnName="STUDENT_RATING_ID" tableName="MORKOVKA"/>
+    </changeSet>
+</databaseChangeLog>
