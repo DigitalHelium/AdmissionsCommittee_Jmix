@@ -25,9 +25,9 @@ public class ExamResults {
     @Id
     private UUID id;
 
-    @Column(name = "SUBHECT_NAME", nullable = false, unique = true, length = 100)
+    @Column(name = "SUBJECT_NAME", nullable = false, unique = true, length = 100)
     @NotNull
-    private String subhectName;
+    private String subjectName;
 
     @Column(name = "SCORE", nullable = false)
     @NotNull
@@ -84,12 +84,12 @@ public class ExamResults {
         this.score = score;
     }
 
-    public String getSubhectName() {
-        return subhectName;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setSubhectName(String subhectName) {
-        this.subhectName = subhectName;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public Date getDeletedDate() {

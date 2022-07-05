@@ -1,8 +1,10 @@
 package com.company.work.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,13 +14,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 @JmixEntity
 @Table(name = "ADMISSIONS_COMMITTEE", indexes = {
         @Index(name = "IDX_ADMISSIONSCOMMITTEE", columnList = "STUDENTS_ID"),
-        @Index(name = "IDX_ADMISSIONSCOMMITTEE", columnList = "COURSES_ID"),
-        @Index(name = "IDX_ADMISSIONSCOMMITTEE", columnList = "RATINGS_ID")
+        @Index(name = "IDX_ADMISSIONSCOMMITTEE", columnList = "COURSES_ID")
 })
 @Entity
 public class AdmissionsCommittee {
@@ -39,9 +41,9 @@ public class AdmissionsCommittee {
     @ManyToOne(fetch = FetchType.LAZY)
     private Course courses;
 
-    @JoinColumn(name = "RATINGS_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private StudentRating ratings;
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "admissionsCommittee")
+    private Set<StudentRating> raitings;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -74,12 +76,12 @@ public class AdmissionsCommittee {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
-    public StudentRating getRatings() {
-        return ratings;
+    public Set<StudentRating> getRaitings() {
+        return raitings;
     }
 
-    public void setRatings(StudentRating ratings) {
-        this.ratings = ratings;
+    public void setRaitings(Set<StudentRating> raitings) {
+        this.raitings = raitings;
     }
 
     public Course getCourses() {

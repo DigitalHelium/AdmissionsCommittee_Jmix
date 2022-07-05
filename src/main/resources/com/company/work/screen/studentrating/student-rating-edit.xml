@@ -7,17 +7,6 @@
                   class="com.company.work.entity.StudentRating">
             <fetchPlan extends="_base">
                 <property name="course" fetchPlan="_base"/>
-                <property name="students" fetchPlan="_base">
-                    <property name="contacts" fetchPlan="_base">
-                        <property name="registrationAddress" fetchPlan="_base"/>
-                        <property name="residentialAddress" fetchPlan="_base"/>
-                    </property>
-                    <property name="documents" fetchPlan="_base"/>
-                    <property name="desiredCourses" fetchPlan="_base">
-                        <property name="desiredCourse" fetchPlan="_base"/>
-                    </property>
-                    <property name="examResults" fetchPlan="_base"/>
-                </property>
             </fetchPlan>
             <loader/>
         </instance>
@@ -42,12 +31,6 @@
             <column width="350px">
                 <checkBox id="isFullTimeField" property="isFullTime"/>
                 <entityPicker id="courseField" property="course">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
-                <entityPicker id="studentsField" property="students">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>

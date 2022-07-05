@@ -12,14 +12,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
 @Table(name = "STUDENT_RATING", indexes = {
         @Index(name = "IDX_STUDENTRATING", columnList = "ADMISSIONS_COMMITTEE_ID"),
-        @Index(name = "IDX_STUDENTRATING_COURSE_ID", columnList = "COURSE_ID"),
-        @Index(name = "IDX_STUDENTRATING_STUDENTS_ID", columnList = "STUDENTS_ID"),
-        @Index(name = "IDX_STUDENTRATING_MORKOVKA_ID", columnList = "MORKOVKA_ID")
+        @Index(name = "IDX_STUDENTRATING_COURSE_ID", columnList = "COURSE_ID")
 })
 @Entity
 public class StudentRating {
@@ -63,9 +62,11 @@ public class StudentRating {
     @Column(name = "DELETED_BY")
     private String deletedBy;
 
-    @JoinColumn(name = "STUDENTS_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Student students;
+    @JoinTable(name = "STUDENT_RATING_STUDENT_LINK",
+            joinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    private List<Student> students;
 
     @DeletedDate
     @Column(name = "DELETED_DATE")
@@ -76,11 +77,11 @@ public class StudentRating {
     @ManyToOne(fetch = FetchType.LAZY)
     private AdmissionsCommittee admissionsCommittee;
 
-    public Student getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Student students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

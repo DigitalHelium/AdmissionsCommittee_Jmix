@@ -135,6 +135,20 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     private AdmissionsCommittee admissionsCommittee;
 
+    @JoinTable(name = "STUDENT_RATING_STUDENT_LINK",
+            joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    private Set<StudentRating> studentRatings;
+
+    public Set<StudentRating> getStudentRatings() {
+        return studentRatings;
+    }
+
+    public void setStudentRatings(Set<StudentRating> studentRatings) {
+        this.studentRatings = studentRatings;
+    }
+
     public AdmissionsCommittee getAdmissionsCommittee() {
         return admissionsCommittee;
     }

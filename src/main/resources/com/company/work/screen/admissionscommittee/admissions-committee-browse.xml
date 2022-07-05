@@ -9,7 +9,6 @@
             <fetchPlan extends="_base">
                 <property name="students" fetchPlan="_base"/>
                 <property name="courses" fetchPlan="_base"/>
-                <property name="ratings" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="admissionsCommitteesDl">
                 <query>
@@ -51,7 +50,6 @@
                 <column id="year"/>
                 <column id="students"/>
                 <column id="courses"/>
-                <column id="ratings"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

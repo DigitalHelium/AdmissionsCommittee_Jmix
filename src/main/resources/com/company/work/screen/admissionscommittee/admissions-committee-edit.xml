@@ -16,10 +16,6 @@
                     <property name="examResults" fetchPlan="_base"/>
                 </property>
                 <property name="courses" fetchPlan="_base"/>
-                <property name="ratings" fetchPlan="_base">
-                    <property name="course" fetchPlan="_base"/>
-                    <property name="students" fetchPlan="_base"/>
-                </property>
             </fetchPlan>
             <loader/>
         </instance>
@@ -51,12 +47,6 @@
                         </actions>
                     </entityPicker>
                     <entityPicker id="coursesField" property="courses">
-                        <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                    <entityPicker id="ratingsField" property="ratings">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>

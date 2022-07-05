@@ -8,7 +8,6 @@
                     class="com.company.work.entity.StudentRating">
             <fetchPlan extends="_base">
                 <property name="course" fetchPlan="_base"/>
-                <property name="students" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="studentRatingsDl">
                 <query>
@@ -49,7 +48,6 @@
             <columns>
                 <column id="isFullTime"/>
                 <column id="course"/>
-                <column id="students"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
