@@ -1,5 +1,6 @@
 package com.company.work.screen.student;
 
+import com.company.work.app.StudentService;
 import com.company.work.entity.ExamResults;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.LayoutClickNotifier;
@@ -18,6 +19,8 @@ public class StudentEdit extends StandardEditor<Student> {
     private Table<ExamResults> examResultsTable;
     @Autowired
     private TextField<Integer> scoreSumOfThreeSubjectsField;
+    @Autowired
+    private StudentService studentService;
 
     @Subscribe(target = Target.DATA_CONTEXT)
     public void onChange(DataContext.ChangeEvent event) {
@@ -28,9 +31,6 @@ public class StudentEdit extends StandardEditor<Student> {
         scoreSumOfThreeSubjectsField.setValue(sum);
 
     }
-
-
-
 
     
 }

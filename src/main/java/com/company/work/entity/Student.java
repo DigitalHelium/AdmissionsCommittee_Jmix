@@ -137,6 +137,10 @@ public class Student {
     @ManyToMany
     private Set<StudentRating> studentRatings;
 
+    public void setScoreSumOfThreeSubjects(Integer scoreSumOfThreeSubjects) {
+        this.scoreSumOfThreeSubjects = scoreSumOfThreeSubjects;
+    }
+
     public Set<StudentRating> getStudentRatings() {
         return studentRatings;
     }
