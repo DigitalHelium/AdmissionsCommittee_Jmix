@@ -73,9 +73,6 @@ public class StudentRating {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @JoinColumn(name = "ADMISSIONS_COMMITTEE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AdmissionsCommittee admissionsCommittee;
 
     public List<Student> getStudents() {
         return students;
@@ -91,14 +88,6 @@ public class StudentRating {
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    public AdmissionsCommittee getAdmissionsCommittee() {
-        return admissionsCommittee;
-    }
-
-    public void setAdmissionsCommittee(AdmissionsCommittee admissionsCommittee) {
-        this.admissionsCommittee = admissionsCommittee;
     }
 
     public Boolean getIsFullTime() {

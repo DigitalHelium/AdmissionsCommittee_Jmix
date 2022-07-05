@@ -131,10 +131,6 @@ public class Student {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
-    @JoinColumn(name = "ADMISSIONS_COMMITTEE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AdmissionsCommittee admissionsCommittee;
-
     @JoinTable(name = "STUDENT_RATING_STUDENT_LINK",
             joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"))
@@ -147,14 +143,6 @@ public class Student {
 
     public void setStudentRatings(Set<StudentRating> studentRatings) {
         this.studentRatings = studentRatings;
-    }
-
-    public AdmissionsCommittee getAdmissionsCommittee() {
-        return admissionsCommittee;
-    }
-
-    public void setAdmissionsCommittee(AdmissionsCommittee admissionsCommittee) {
-        this.admissionsCommittee = admissionsCommittee;
     }
 
     public DocumentCard getDocuments() {
@@ -192,10 +180,6 @@ public class Student {
 
     public Integer getScoreSumOfThreeSubjects() {
         return scoreSumOfThreeSubjects;
-    }
-
-    public void setScoreSumOfThreeSubjects(Integer scoreSumOfThreeSubjects) {
-        this.scoreSumOfThreeSubjects = scoreSumOfThreeSubjects;
     }
 
     public Boolean getIsDormNeeded() {

@@ -72,10 +72,6 @@ public class Course {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @JoinColumn(name = "ADMISSIONS_COMMITTEE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AdmissionsCommittee admissionsCommittee;
-
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "course")
     private StudentRating studentRating;
 
@@ -85,14 +81,6 @@ public class Course {
 
     public void setStudentRating(StudentRating studentRating) {
         this.studentRating = studentRating;
-    }
-
-    public AdmissionsCommittee getAdmissionsCommittee() {
-        return admissionsCommittee;
-    }
-
-    public void setAdmissionsCommittee(AdmissionsCommittee admissionsCommittee) {
-        this.admissionsCommittee = admissionsCommittee;
     }
 
     public Integer getPassRate() {
