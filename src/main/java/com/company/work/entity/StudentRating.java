@@ -12,7 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @JmixEntity
@@ -66,21 +66,21 @@ public class StudentRating {
             joinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private List<Student> students;
+    private Set<Student> students;
 
     @DeletedDate
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
 
     public Course getCourse() {
         return course;
@@ -161,4 +161,5 @@ public class StudentRating {
     public void setId(UUID id) {
         this.id = id;
     }
+
 }

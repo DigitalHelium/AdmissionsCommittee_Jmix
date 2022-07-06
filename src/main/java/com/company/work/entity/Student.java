@@ -19,6 +19,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -135,18 +136,18 @@ public class Student {
             joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private Set<StudentRating> studentRatings;
+    private List<StudentRating> studentRatings;
 
-    public void setScoreSumOfThreeSubjects(Integer scoreSumOfThreeSubjects) {
-        this.scoreSumOfThreeSubjects = scoreSumOfThreeSubjects;
+    public void setStudentRatings(List<StudentRating> studentRatings) {
+        this.studentRatings = studentRatings;
     }
 
-    public Set<StudentRating> getStudentRatings() {
+    public List<StudentRating> getStudentRatings() {
         return studentRatings;
     }
 
-    public void setStudentRatings(Set<StudentRating> studentRatings) {
-        this.studentRatings = studentRatings;
+    public void setScoreSumOfThreeSubjects(Integer scoreSumOfThreeSubjects) {
+        this.scoreSumOfThreeSubjects = scoreSumOfThreeSubjects;
     }
 
     public DocumentCard getDocuments() {
