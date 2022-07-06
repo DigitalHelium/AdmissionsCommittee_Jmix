@@ -29,7 +29,6 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="studentRatingDc">
             <column width="350px">
-                <checkBox id="isFullTimeField" property="isFullTime"/>
                 <entityPicker id="courseField" property="course">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>

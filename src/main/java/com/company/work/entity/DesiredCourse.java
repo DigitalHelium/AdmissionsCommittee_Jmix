@@ -4,6 +4,7 @@ import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
@@ -27,9 +28,10 @@ public class DesiredCourse {
     @Id
     private UUID id;
 
+    @OnDelete(DeletePolicy.UNLINK)
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @JoinColumn(name = "DESIRED_COURSE_ID", unique = true)
+    @JoinColumn(name = "DESIRED_COURSE_ID")
     private Course desiredCourse;
 
     @Column(name = "PRIORITY", nullable = false)
@@ -67,8 +69,8 @@ public class DesiredCourse {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @JoinColumn(name = "STUDENT_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "STUDENT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
 
     public Student getStudent() {

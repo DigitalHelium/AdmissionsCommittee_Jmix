@@ -85,7 +85,7 @@ public class Student {
     private DocumentCard documents;
 
     @OneToMany(mappedBy = "student")
-    @OnDeleteInverse(DeletePolicy.DENY)
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     private Set<DesiredCourse> desiredCourses;

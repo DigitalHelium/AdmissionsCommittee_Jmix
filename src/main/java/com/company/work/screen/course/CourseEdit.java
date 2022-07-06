@@ -7,4 +7,8 @@ import com.company.work.entity.Course;
 @UiDescriptor("course-edit.xml")
 @EditedEntityContainer("courseDc")
 public class CourseEdit extends StandardEditor<Course> {
+    @Subscribe
+    public void onInit(InitEvent event) {
+        
+    }
 }

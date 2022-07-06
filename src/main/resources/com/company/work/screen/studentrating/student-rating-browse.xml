@@ -7,13 +7,26 @@
         <collection id="studentRatingsDc"
                     class="com.company.work.entity.StudentRating">
             <fetchPlan extends="_base">
-                <property name="course" fetchPlan="_base"/>
+                <property name="course">
+                    <property name="courseName"/>
+                    <property name="courseID"/>
+                </property>
             </fetchPlan>
             <loader id="studentRatingsDl">
                 <query>
                     <![CDATA[select e from StudentRating e]]>
                 </query>
             </loader>
+        </collection>
+        <collection id="studentsDc"
+                    class="com.company.work.entity.Student">
+            <fetchPlan extends="_base">
+                <property name="firstName" fetch="AUTO"/>
+                <property name="lastName" fetch="AUTO"/>
+                <property name="middleName" fetch="AUTO"/>
+                <property name="scoreSumOfThreeSubjects" fetch="AUTO"/>
+                <property name="birthDate" fetch="AUTO"/>
+            </fetchPlan>
         </collection>
     </data>
     <facets>
@@ -39,15 +52,15 @@
         </filter>
         <groupTable id="studentRatingsTable"
                     width="100%"
-                    dataContainer="studentRatingsDc">
+                    dataContainer="studentRatingsDc" align="TOP_LEFT">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="isFullTime"/>
-                <column id="course"/>
+                <column id="course.courseName"/>
+                <column id="course.courseID"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
@@ -57,9 +70,23 @@
                 <button id="removeBtn" action="studentRatingsTable.remove"/>
             </buttonsPanel>
         </groupTable>
+
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
         </hbox>
+        <groupTable id="studentRatingsTable1"
+                    width="100%"
+                    dataContainer="studentsDc">
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="middleName" />
+                <column id="scoreSumOfThreeSubjects"/>
+                <column id="birthDate"/>
+            </columns>
+        </groupTable>
+
+
     </layout>
 </window>

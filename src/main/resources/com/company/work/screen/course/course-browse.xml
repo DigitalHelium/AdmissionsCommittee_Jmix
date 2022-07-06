@@ -48,6 +48,7 @@
                 <column id="courseID"/>
                 <column id="scholarshipNum"/>
                 <column id="passRate"/>
+                <column id="isFullTime"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

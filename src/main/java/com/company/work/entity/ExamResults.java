@@ -25,7 +25,7 @@ public class ExamResults {
     @Id
     private UUID id;
 
-    @Column(name = "SUBJECT_NAME", nullable = false, unique = true, length = 100)
+    @Column(name = "SUBJECT_NAME", nullable = false, length = 100)
     @NotNull
     private String subjectName;
 

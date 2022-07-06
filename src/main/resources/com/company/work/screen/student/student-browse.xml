@@ -62,10 +62,13 @@
                 <column id="studentID"/>
                 <column id="citizenship"/>
                 <column id="isDormNeeded"/>
-                <column id="contacts"/>
+                <column id="contacts.mainPhoneNum"/>
+                <column id="contacts.residentialAddress.locality"/>
+                <column id="contacts.residentialAddress.street"/>
+                <column id="contacts.residentialAddress.houseNum"/>
                 <column id="documents.snilsID"/>
                 <column id="documents.innID"/>
-                <column id="documents.passportID"/>
+                <column id="documents.passportID" caption="Passport"/>
                 <column id="scoreSumOfThreeSubjects"/>
             </columns>
             <simplePagination/>

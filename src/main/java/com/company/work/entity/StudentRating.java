@@ -1,8 +1,11 @@
 package com.company.work.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,10 +30,8 @@ public class StudentRating {
     @Id
     private UUID id;
 
-    @Column(name = "IS_FULL_TIME", nullable = false)
-    @NotNull
-    private Boolean isFullTime = false;
-
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinColumn(name = "COURSE_ID", nullable = false)
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -88,14 +89,6 @@ public class StudentRating {
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    public Boolean getIsFullTime() {
-        return isFullTime;
-    }
-
-    public void setIsFullTime(Boolean isFullTime) {
-        this.isFullTime = isFullTime;
     }
 
     public Date getDeletedDate() {

@@ -32,6 +32,7 @@
                     <textField id="courseIDField" property="courseID"/>
                     <textField id="scholarshipNumField" property="scholarshipNum"/>
                     <textField id="passRateField" property="passRate"/>
+                    <checkBox id="isFullTime" property="isFullTime"/>
                 </column>
             </form>
         </scrollBox>

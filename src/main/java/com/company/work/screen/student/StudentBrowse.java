@@ -1,6 +1,6 @@
 package com.company.work.screen.student;
 
-import com.company.work.app.StudentService;
+import com.company.work.app.RatingService;
 import io.jmix.ui.component.Table;
 import io.jmix.ui.screen.*;
 import com.company.work.entity.Student;
@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 @LookupComponent("studentsTable")
 public class StudentBrowse extends StandardLookup<Student> {
     @Autowired
-    private StudentService studentService;
+    private RatingService ratingService;
 
     @Subscribe("studentsTable.firstName")
     public void onStudentsTableFirstNameClick(Table.Column.ClickEvent<Student> event) {
-        studentService.addNewStudentToRating();
+        ratingService.addNewStudentToRating();
     }
 }

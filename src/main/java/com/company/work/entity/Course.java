@@ -25,6 +25,10 @@ public class Course {
     @Id
     private UUID id;
 
+    @Column(name = "IS_FULL_TIME", nullable = false)
+    @NotNull
+    private Boolean isFullTime = false;
+
     @Column(name = "COURSE_NAME", nullable = false, unique = true, length = 100)
     @NotNull
     private String courseName;
@@ -74,6 +78,14 @@ public class Course {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "course")
     private StudentRating studentRating;
+
+    public Boolean getIsFullTime() {
+        return isFullTime;
+    }
+
+    public void setIsFullTime(Boolean isFullTime) {
+        this.isFullTime = isFullTime;
+    }
 
     public StudentRating getStudentRating() {
         return studentRating;
