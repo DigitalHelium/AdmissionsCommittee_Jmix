@@ -24,7 +24,7 @@ public class Contacts {
     @Id
     private UUID id;
 
-    @Column(name = "MAIN_PHONE_NUM", nullable = false, unique = true, length = 20)
+    @Column(name = "MAIN_PHONE_NUM", nullable = false, length = 20)
     @NotNull
     private String mainPhoneNum;
 

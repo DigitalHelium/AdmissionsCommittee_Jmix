@@ -16,9 +16,15 @@ public class StudentService {
     private DataManager dataManager;
 
     public int getNewStudentID(){
-        Student maxStud = dataManager.load(Student.class)
-                .query("SELECT s FROM Student s WHERE s.studentID = (SELECT MAX(st.studentID) FROM Student st)")
-                .one();
-        return maxStud.getStudentID()+1;
+        try {
+            Student maxStud = dataManager.load(Student.class)
+                    .query("SELECT s FROM Student s WHERE s.studentID = (SELECT MAX(st.studentID) FROM Student st)")
+                    .one();
+
+            return maxStud.getStudentID() + 1;
+        }
+        catch (IllegalStateException e){
+            return 1;
+        }
     }
 }

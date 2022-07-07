@@ -15,6 +15,6 @@ public class StudentBrowse extends StandardLookup<Student> {
 
     @Subscribe("studentsTable.firstName")
     public void onStudentsTableFirstNameClick(Table.Column.ClickEvent<Student> event) {
-        ratingService.addNewStudentToRating();
+        //ratingService.addNewStudentToRating();
     }
 }

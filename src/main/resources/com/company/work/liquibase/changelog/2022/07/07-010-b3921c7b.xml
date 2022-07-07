@@ -6,14 +6,6 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1" author="Work">
-        <createIndex indexName="IDX_ADMISSIONSCOMMITTEE" tableName="ADMISSIONS_COMMITTEE">
-            <column name="COURSES_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet id="2" author="Work">
-        <dropColumn columnName="rating_id" tableName="admissions_committee"/>
-    </changeSet>
-    <changeSet id="3" author="Work">
-        <dropNotNullConstraint columnDataType="uuid" columnName="ADMISSIONS_COMMITTEE_ID" tableName="STUDENT_RATING"/>
+        <dropIndex indexName="idx_uc_contacts_main_phone_num" tableName="contacts"/>
     </changeSet>
 </databaseChangeLog>
