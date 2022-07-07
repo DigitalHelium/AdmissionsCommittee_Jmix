@@ -1,8 +1,11 @@
 package com.company.work.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -64,16 +67,19 @@ public class ExamResults {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
+    @NotNull
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinColumn(name = "STUDENT_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Student student;
 
-    public Student getStudent() {
-        return student;
-    }
-
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public Student getStudent() {
+        return student;
     }
 
     public Integer getScore() {

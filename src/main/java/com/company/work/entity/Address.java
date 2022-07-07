@@ -1,5 +1,7 @@
 package com.company.work.entity;
 
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
@@ -101,5 +103,11 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @InstanceName
+    @DependsOnProperties({"country", "locality", "street", "houseNum"})
+    public String getInstanceName() {
+        return String.format("%s, %s, %s, %s", country, locality, street, houseNum);
     }
 }

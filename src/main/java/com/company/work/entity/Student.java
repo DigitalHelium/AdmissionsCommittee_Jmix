@@ -96,7 +96,7 @@ public class Student {
     private Integer scoreSumOfThreeSubjects;
 
     @OneToMany(mappedBy = "student")
-    @OnDeleteInverse(DeletePolicy.DENY)
+    @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     private List<ExamResults> examResults;
