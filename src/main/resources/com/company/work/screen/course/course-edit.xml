@@ -28,11 +28,11 @@
         <scrollBox id="scrollBox" spacing="true">
             <form id="form" dataContainer="courseDc">
                 <column width="350px">
-                    <textField id="courseNameField" property="courseName"/>
-                    <textField id="courseIDField" property="courseID"/>
-                    <textField id="scholarshipNumField" property="scholarshipNum"/>
-                    <textField id="passRateField" property="passRate"/>
-                    <checkBox id="isFullTime" property="isFullTime"/>
+                    <textField id="courseNameField" property="courseName" caption="msg://com.company.work.entity/Course.courseName"/>
+                    <textField id="courseIDField" property="courseID" caption="msg://com.company.work.entity/Course.courseID"/>
+                    <textField id="scholarshipNumField" property="scholarshipNum" caption="msg://com.company.work.entity/Course.scholarshipNum"/>
+                    <textField id="passRateField" property="passRate" caption="msg://com.company.work.entity/Course.passRate"/>
+                    <checkBox id="isFullTime" property="isFullTime" caption="msg://com.company.work.entity/Course.isFullTime"/>
                 </column>
             </form>
         </scrollBox>

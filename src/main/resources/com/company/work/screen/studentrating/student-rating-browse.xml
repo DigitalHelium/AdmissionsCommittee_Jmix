@@ -53,22 +53,12 @@
         <groupTable id="studentRatingsTable"
                     width="100%"
                     dataContainer="studentRatingsDc" align="TOP_LEFT">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
+
             <columns>
-                <column id="course.courseName"/>
-                <column id="course.courseID"/>
+                <column id="course.courseName" caption="msg://com.company.work.entity/Course.courseName"/>
+                <column id="course.courseID" caption="msg://com.company.work.entity/Course.courseID"/>
             </columns>
             <simplePagination/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="studentRatingsTable.create"/>
-                <button id="editBtn" action="studentRatingsTable.edit"/>
-                <button id="removeBtn" action="studentRatingsTable.remove"/>
-            </buttonsPanel>
         </groupTable>
 
         <hbox id="lookupActions" spacing="true" visible="false">
@@ -79,11 +69,11 @@
                     width="100%"
                     dataContainer="studentsDc">
             <columns>
-                <column id="firstName"/>
-                <column id="lastName"/>
-                <column id="middleName" />
-                <column id="scoreSumOfThreeSubjects"/>
-                <column id="birthDate"/>
+                <column id="firstName" caption="msg://com.company.work.entity/Student.firstName"/>
+                <column id="lastName" caption="msg://com.company.work.entity/Student.lastName"/>
+                <column id="middleName" caption="msg://com.company.work.entity/Student.middleName"/>
+                <column id="scoreSumOfThreeSubjects" caption="msg://com.company.work.entity/Student.scoreSumOfThreeSubjects"/>
+                <column id="birthDate" caption="msg://com.company.work.entity/Student.birthDate"/>
             </columns>
         </groupTable>
 

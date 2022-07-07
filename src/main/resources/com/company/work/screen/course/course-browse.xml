@@ -44,11 +44,11 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="courseName"/>
-                <column id="courseID"/>
-                <column id="scholarshipNum"/>
-                <column id="passRate"/>
-                <column id="isFullTime"/>
+                <column id="courseName" caption="msg://com.company.work.entity/Course.courseName"/>
+                <column id="courseID" caption="msg://com.company.work.entity/Course.courseID"/>
+                <column id="scholarshipNum" caption="msg://com.company.work.entity/Course.scholarshipNum"/>
+                <column id="passRate" caption="msg://com.company.work.entity/Course.passRate"/>
+                <column id="isFullTime" caption="msg://com.company.work.entity/Course.isFullTime"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
