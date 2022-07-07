@@ -88,8 +88,8 @@
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="subjectName"/>
-                        <column id="score"/>
+                        <column id="score" caption="msg://com.company.work.entity/ExamResults.score"/>
+                        <column id="subjectR.subjectName" caption="msg://com.company.work.entity/ExamSubjects.subjectName"/>
                     </columns>
                     <buttonsPanel>
                         <button action="examResultsTable.create"/>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="Work">
+        <createTable tableName="EXAM_SUBJECTS">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EXAM_SUBJECTS"/>
+            </column>
+            <column name="SUBJECT_NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Work">
+        <addColumn tableName="EXAM_RESULTS">
+            <column name="SUBJECT_R_ID" type="UUID"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="3" author="Work">
+        <createIndex indexName="IDX_EXAMRESULTS_SUBJECT_R_ID" tableName="EXAM_RESULTS">
+            <column name="SUBJECT_R_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="SUBJECT_R_ID" baseTableName="EXAM_RESULTS"
+                                 constraintName="FK_EXAM_RESULTS_ON_SUBJECT_R" referencedColumnNames="ID"
+                                 referencedTableName="EXAM_SUBJECTS"/>
+    </changeSet>
+    <changeSet id="4" author="Work" dbms="postgresql">
+        <createIndex indexName="IDX_UC_EXAM_SUBJECTS_SUBJECT_NAME" tableName="EXAM_SUBJECTS" unique="true">
+            <column name="SUBJECT_NAME"/>
+        </createIndex>
+
+        <modifySql>
+            <append value="where DELETED_DATE is null"/>
+        </modifySql>
+    </changeSet>
+    <changeSet id="5" author="Work">
+        <dropColumn columnName="subject_name" tableName="exam_results"/>
+    </changeSet>
+</databaseChangeLog>

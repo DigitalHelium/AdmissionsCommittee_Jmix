@@ -1,11 +1,9 @@
 package com.company.work.entity;
 
-import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
-import io.jmix.core.entity.annotation.OnDelete;
-import io.jmix.core.entity.annotation.OnDeleteInverse;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,39 +16,22 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "EXAM_RESULTS", indexes = {
-        @Index(name = "IDX_EXAMRESULTS_STUDENT_ID", columnList = "STUDENT_ID"),
-        @Index(name = "IDX_EXAMRESULTS_SUBJECT_R_ID", columnList = "SUBJECT_R_ID")
-})
+@Table(name = "EXAM_SUBJECTS")
 @Entity
-public class ExamResults {
+public class ExamSubjects {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
 
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.UNLINK)
-    @JoinColumn(name = "SUBJECT_R_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ExamSubjects subjectR;
-
-    @Column(name = "SCORE", nullable = false)
+    @InstanceName
+    @Column(name = "SUBJECT_NAME", nullable = false, unique = true, length = 50)
     @NotNull
-    private Integer score;
+    private String subjectName;
 
     @Column(name = "VERSION", nullable = false)
     @Version
     private Integer version;
-
-    @LastModifiedBy
-    @Column(name = "LAST_MODIFIED_BY")
-    private String lastModifiedBy;
-
-    @LastModifiedDate
-    @Column(name = "LAST_MODIFIED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -61,6 +42,15 @@ public class ExamResults {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
+    @LastModifiedBy
+    @Column(name = "LAST_MODIFIED_BY")
+    private String lastModifiedBy;
+
+    @LastModifiedDate
+    @Column(name = "LAST_MODIFIED_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
     @DeletedBy
     @Column(name = "DELETED_BY")
     private String deletedBy;
@@ -70,35 +60,12 @@ public class ExamResults {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @NotNull
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.UNLINK)
-    @JoinColumn(name = "STUDENT_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Student student;
-
-    public ExamSubjects getSubjectR() {
-        return subjectR;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setSubjectR(ExamSubjects subjectR) {
-        this.subjectR = subjectR;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public Date getDeletedDate() {
@@ -117,22 +84,6 @@ public class ExamResults {
         this.deletedBy = deletedBy;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
@@ -147,6 +98,22 @@ public class ExamResults {
 
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Integer getVersion() {

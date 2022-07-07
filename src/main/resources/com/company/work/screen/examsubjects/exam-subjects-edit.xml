@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://examResultsEdit.caption"
+        caption="msg://examSubjectsEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="examResultsDc"
-                  class="com.company.work.entity.ExamResults">
+        <instance id="examSubjectsDc"
+                  class="com.company.work.entity.ExamSubjects">
             <fetchPlan extends="_base"/>
             <loader/>
         </instance>
@@ -25,15 +25,9 @@
     <dialogMode height="600"
                 width="800"/>
     <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="examResultsDc">
+        <form id="form" dataContainer="examSubjectsDc">
             <column width="350px">
-                <entityPicker id="subjectField" property="subjectR" caption="msg://com.company.work.entity/ExamSubjects.subjectName">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
-                <textField id="scoreField" property="score"/>
+                <textField id="subjectNameField" property="subjectName"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

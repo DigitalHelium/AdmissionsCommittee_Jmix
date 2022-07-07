@@ -8,6 +8,8 @@
         <item screen="StudentRating.browse"
               caption="msg://com.company.work.screen.studentrating/studentRatingBrowse.menu"/>
         <item screen="Student.browse" caption="msg://com.company.work.screen.student/studentBrowse.menu"/>
+        <item screen="ExamSubjects.browse"
+              caption="msg://com.company.work.screen.examsubjects/examSubjectsBrowse.menu"/>
     </menu>
 
 </menu-config>

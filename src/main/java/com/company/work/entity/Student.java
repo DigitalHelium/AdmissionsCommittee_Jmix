@@ -99,7 +99,7 @@ public class Student {
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
-    private List<ExamResults> examResults;
+    private Set<ExamResults> examResults;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -138,11 +138,11 @@ public class Student {
     @ManyToMany
     private List<StudentRating> studentRatings;
 
-    public void setExamResults(List<ExamResults> examResults) {
+    public void setExamResults(Set<ExamResults> examResults) {
         this.examResults = examResults;
     }
 
-    public List<ExamResults> getExamResults() {
+    public Set<ExamResults> getExamResults() {
         return examResults;
     }
 

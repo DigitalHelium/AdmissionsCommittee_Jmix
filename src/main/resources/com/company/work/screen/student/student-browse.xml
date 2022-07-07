@@ -68,7 +68,7 @@
                 <column id="contacts.residentialAddress.houseNum"/>
                 <column id="documents.snilsID"/>
                 <column id="documents.innID"/>
-                <column id="documents.passportID" caption="Passport"/>
+                <column id="documents.passportID"/>
                 <column id="scoreSumOfThreeSubjects"/>
             </columns>
             <simplePagination/>
