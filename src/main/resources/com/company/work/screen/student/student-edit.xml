@@ -13,6 +13,7 @@
                 <property name="documents" fetchPlan="_base"/>
                 <property name="desiredCourses" fetchPlan="_base">
                     <property name="desiredCourse" fetchPlan="_base"/>
+                    <property name="priority"/>
                 </property>
                 <property name="examResults" fetchPlan="_base"/>
             </fetchPlan>
@@ -69,8 +70,8 @@
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="priority"/>
-                        <column id="desiredCourse"/>
+                        <column id="priority" caption="msg://com.company.work.entity/DesiredCourse.priority"/>
+                        <column id="desiredCourse" caption="msg://com.company.work.entity/DesiredCourse.desiredCourse"/>
                     </columns>
                     <buttonsPanel>
                         <button action="desiredCoursesTable.create"/>

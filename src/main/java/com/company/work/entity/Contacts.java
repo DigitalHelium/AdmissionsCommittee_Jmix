@@ -191,6 +191,6 @@ public class Contacts {
     @InstanceName
     @DependsOnProperties({"mainPhoneNum", "registrationAddress"})
     public String getInstanceName() {
-        return String.format("%s, %s", mainPhoneNum, registrationAddress);
+        return String.format("%s, %s", mainPhoneNum, registrationAddress.getInstanceName());
     }
 }
