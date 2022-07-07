@@ -28,6 +28,7 @@ public class StudentEventListener_1 {
             }else
                 if(event.getType() == EntityChangedEvent.Type.UPDATED && event.getChanges().isChanged("desiredCourses")){
                 log.warn("Student Updated!");
+                event.getChanges().getOldValue("desiredCourses");
             }
         }
         catch (Exception e){
