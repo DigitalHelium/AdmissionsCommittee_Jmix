@@ -9,6 +9,7 @@ import io.jmix.ui.Dialogs;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.action.DialogAction;
+import io.jmix.ui.component.Button;
 import io.jmix.ui.component.Table;
 import io.jmix.ui.component.TextField;
 import io.jmix.ui.model.CollectionContainer;
@@ -37,6 +38,10 @@ public class StudentEdit extends StandardEditor<Student> {
     private Messages messages;
     @Autowired
     private Dialogs dialogs;
+    @Autowired
+    private Button examResultsTableCreateButton;
+    @Autowired
+    private Button desiredCourseTableCreateButton;
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<Student> event) {
@@ -47,6 +52,12 @@ public class StudentEdit extends StandardEditor<Student> {
     @Subscribe(id = "examResultsDc", target = Target.DATA_CONTAINER)
     public void onExamResultsDcCollectionChange(CollectionContainer.CollectionChangeEvent<ExamResults> event) {
         getEditedEntity().setScoreSumOfThreeSubjects(sumScores(getEditedEntity()));
+        examResultsTableCreateButton.setEnabled(!isThreeExams(getEditedEntity()));
+    }
+
+    @Subscribe(id = "desiredCoursesDc", target = Target.DATA_CONTAINER)
+    public void onDesiredCoursesDcCollectionChange(CollectionContainer.CollectionChangeEvent<DesiredCourse> event) {
+        desiredCourseTableCreateButton.setEnabled(!isThreeCourses(getEditedEntity()));
     }
 
     @Subscribe
@@ -64,10 +75,16 @@ public class StudentEdit extends StandardEditor<Student> {
                     .show();
         }
     }
+    private boolean isThreeExams(Student stud){
+        return stud.getExamResults().size()>=3;
+    }
+    private boolean isThreeCourses(Student stud){
+        return stud.getDesiredCourses().size()>=3;
+    }
 
-    private int sumScores(Student student){
+    private int sumScores(Student stud){
         int sum=0;
-        for (ExamResults ex:student.getExamResults()){
+        for (ExamResults ex:stud.getExamResults()){
             sum+=ex.getScore();
         }
         return sum;

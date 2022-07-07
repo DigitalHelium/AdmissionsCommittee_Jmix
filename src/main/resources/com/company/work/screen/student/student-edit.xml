@@ -74,7 +74,7 @@
                         <column id="desiredCourse" caption="msg://com.company.work.entity/DesiredCourse.desiredCourse"/>
                     </columns>
                     <buttonsPanel>
-                        <button action="desiredCoursesTable.create"/>
+                        <button id="desiredCourseTableCreateButton" action="desiredCoursesTable.create"/>
                         <button action="desiredCoursesTable.edit"/>
                         <button action="desiredCoursesTable.remove"/>
                     </buttonsPanel>
@@ -92,7 +92,7 @@
                         <column id="subjectR.subjectName" caption="msg://com.company.work.entity/ExamSubjects.subjectName"/>
                     </columns>
                     <buttonsPanel>
-                        <button action="examResultsTable.create"/>
+                        <button id="examResultsTableCreateButton" action="examResultsTable.create"/>
                         <button action="examResultsTable.edit"/>
                         <button action="examResultsTable.remove"/>
                     </buttonsPanel>
