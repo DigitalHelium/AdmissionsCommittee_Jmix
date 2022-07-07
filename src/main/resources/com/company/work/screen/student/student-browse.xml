@@ -15,7 +15,6 @@
                 <property name="desiredCourses" fetchPlan="_base">
                     <property name="desiredCourse" fetchPlan="_base"/>
                 </property>
-                <property name="examResults" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="studentsDl">
                 <query>

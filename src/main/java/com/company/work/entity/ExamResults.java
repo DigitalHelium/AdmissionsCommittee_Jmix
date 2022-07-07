@@ -19,8 +19,8 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "EXAM_RESULTS", indexes = {
-        @Index(name = "IDX_EXAMRESULTS_STUDENT_ID", columnList = "STUDENT_ID"),
-        @Index(name = "IDX_EXAMRESULTS_SUBJECT_R_ID", columnList = "SUBJECT_R_ID")
+        @Index(name = "IDX_EXAMRESULTS_SUBJECT_R_ID", columnList = "SUBJECT_R_ID"),
+        @Index(name = "IDX_EXAMRESULTS_STUDENT_ID", columnList = "STUDENT_ID")
 })
 @Entity
 public class ExamResults {
@@ -29,11 +29,10 @@ public class ExamResults {
     @Id
     private UUID id;
 
-    @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.UNLINK)
-    @JoinColumn(name = "SUBJECT_R_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "SUBJECT_R_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private ExamSubjects subjectR;
 
     @Column(name = "SCORE", nullable = false)
@@ -71,12 +70,19 @@ public class ExamResults {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.UNLINK)
-    @JoinColumn(name = "STUDENT_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "STUDENT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public ExamSubjects getSubjectR() {
         return subjectR;
@@ -84,14 +90,6 @@ public class ExamResults {
 
     public void setSubjectR(ExamSubjects subjectR) {
         this.subjectR = subjectR;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Student getStudent() {
-        return student;
     }
 
     public Integer getScore() {

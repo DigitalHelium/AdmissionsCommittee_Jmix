@@ -2,9 +2,16 @@ package com.company.work.screen.student;
 
 import com.company.work.app.RatingService;
 import com.company.work.app.StudentService;
+import com.company.work.entity.DesiredCourse;
 import com.company.work.entity.ExamResults;
+import io.jmix.core.Messages;
+import io.jmix.ui.Dialogs;
+import io.jmix.ui.Notifications;
+import io.jmix.ui.action.Action;
+import io.jmix.ui.action.DialogAction;
 import io.jmix.ui.component.Table;
 import io.jmix.ui.component.TextField;
+import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.DataContext;
 import io.jmix.ui.screen.*;
 import com.company.work.entity.Student;
@@ -24,23 +31,57 @@ public class StudentEdit extends StandardEditor<Student> {
     private TextField<Integer> studentIDField;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private Notifications notifications;
+    @Autowired
+    private Messages messages;
+    @Autowired
+    private Dialogs dialogs;
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<Student> event) {
         event.getEntity().setStudentID(studentService.getNewStudentID());
     }
 
-    @Subscribe(target = Target.DATA_CONTEXT)
-    public void onChange(DataContext.ChangeEvent event) {
-        sumScores();
 
+    @Subscribe(id = "examResultsDc", target = Target.DATA_CONTAINER)
+    public void onExamResultsDcCollectionChange(CollectionContainer.CollectionChangeEvent<ExamResults> event) {
+        getEditedEntity().setScoreSumOfThreeSubjects(sumScores(getEditedEntity()));
     }
-    private void sumScores(){
-        int sum=0;
-        for (Object id:examResultsTable.getItems().getItemIds()){
-            sum+=examResultsTable.getItems().getItem(id).getScore();
+
+    @Subscribe
+    public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
+        if(checkIfLowerThanPassRate(getEditedEntity())){
+            event.preventCommit();
+            dialogs.createOptionDialog()
+                    .withCaption(messages.getMessage(getClass(), "passRateCheckDialogCaption"))
+                    .withMessage(messages.getMessage(getClass(), "passRateCheck"))
+                    .withActions(
+                            new DialogAction(DialogAction.Type.OK, Action.Status.PRIMARY)
+                                    .withHandler(e->event.resume()),
+                            new DialogAction(DialogAction.Type.NO)
+                    )
+                    .show();
         }
-        scoreSumOfThreeSubjectsField.setValue(sum);
+    }
+
+    private int sumScores(Student student){
+        int sum=0;
+        for (ExamResults ex:student.getExamResults()){
+            sum+=ex.getScore();
+        }
+        return sum;
+    }
+    private boolean checkIfLowerThanPassRate(Student stud){
+        boolean isLowerThenPassRate = false;
+        for(DesiredCourse dc:stud.getDesiredCourses()){
+            if (stud.getScoreSumOfThreeSubjects() < dc.getDesiredCourse().getPassRate()) {
+                isLowerThenPassRate = true;
+                break;
+            }
+        }
+        return  isLowerThenPassRate;
+
     }
     
 }

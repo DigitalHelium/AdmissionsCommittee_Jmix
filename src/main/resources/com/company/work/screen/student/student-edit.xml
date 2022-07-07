@@ -15,13 +15,13 @@
                     <property name="desiredCourse" fetchPlan="_base"/>
                     <property name="priority"/>
                 </property>
-                <property name="examResults" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <instance id="contactsDc" property="contacts"/>
             <collection id="desiredCoursesDc" property="desiredCourses"/>
             <collection id="examResultsDc" property="examResults"/>
         </instance>
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>

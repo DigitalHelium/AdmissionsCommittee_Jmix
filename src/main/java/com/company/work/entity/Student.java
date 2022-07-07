@@ -95,10 +95,10 @@ public class Student {
     @NotNull
     private Integer scoreSumOfThreeSubjects;
 
-    @OneToMany(mappedBy = "student")
-    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
+    @OneToMany(mappedBy = "student")
     private Set<ExamResults> examResults;
 
     @Column(name = "VERSION", nullable = false)
@@ -140,12 +140,12 @@ public class Student {
     @ManyToMany
     private List<StudentRating> studentRatings;
 
-    public void setExamResults(Set<ExamResults> examResults) {
-        this.examResults = examResults;
-    }
-
     public Set<ExamResults> getExamResults() {
         return examResults;
+    }
+
+    public void setExamResults(Set<ExamResults> examResults) {
+        this.examResults = examResults;
     }
 
     public void setStudentRatings(List<StudentRating> studentRatings) {
