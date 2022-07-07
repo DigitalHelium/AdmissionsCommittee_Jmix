@@ -132,6 +132,8 @@ public class Student {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinTable(name = "STUDENT_RATING_STUDENT_LINK",
             joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"))

@@ -20,13 +20,19 @@ public class StudentEventListener_1 {
 
     @EventListener
     public void onStudentChangedBeforeCommit(EntityChangedEvent<Student> event) {
-        log.warn("Student Added or Changed!!!");
+
         try {
-            ratingService.addNewStudentToRating(dataManager.load(Student.class).id(event.getEntityId()).one());
+            if(event.getType() == EntityChangedEvent.Type.CREATED) {
+                log.warn("Student Added!");
+                ratingService.addNewStudentToRating(dataManager.load(Student.class).id(event.getEntityId()).one());
+            }else
+                if(event.getType() == EntityChangedEvent.Type.UPDATED && event.getChanges().isChanged("desiredCourses")){
+                log.warn("Student Updated!");
+            }
         }
         catch (Exception e){
             log.error(e.getMessage());
         }
-        log.warn("Student Added or Changed!!!AFTER");
+        log.warn("Student Event!!!AFTER");
     }
 }

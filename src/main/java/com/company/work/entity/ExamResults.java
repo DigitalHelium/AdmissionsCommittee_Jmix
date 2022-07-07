@@ -29,10 +29,11 @@ public class ExamResults {
     @Id
     private UUID id;
 
+    @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.UNLINK)
-    @JoinColumn(name = "SUBJECT_R_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SUBJECT_R_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private ExamSubjects subjectR;
 
     @Column(name = "SCORE", nullable = false)

@@ -69,6 +69,8 @@ public class DesiredCourse {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinColumn(name = "STUDENT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Student student;

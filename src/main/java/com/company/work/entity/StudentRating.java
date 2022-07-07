@@ -63,6 +63,8 @@ public class StudentRating {
     @Column(name = "DELETED_BY")
     private String deletedBy;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinTable(name = "STUDENT_RATING_STUDENT_LINK",
             joinColumns = @JoinColumn(name = "STUDENT_RATING_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
