@@ -22,9 +22,11 @@ public class StudentEventListener_1 {
     public void onStudentChangedBeforeCommit(EntityChangedEvent<Student> event) {
 
         try {
+
             if(event.getType() == EntityChangedEvent.Type.CREATED) {
                 log.warn("Student Added!");
                 ratingService.addNewStudentToRating(dataManager.load(Student.class).id(event.getEntityId()).one());
+
             }else
                 if(event.getType() == EntityChangedEvent.Type.UPDATED && event.getChanges().isChanged("desiredCourses")){
                 log.warn("Student Updated!");

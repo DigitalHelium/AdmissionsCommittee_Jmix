@@ -196,6 +196,6 @@ public class Course {
     @InstanceName
     @DependsOnProperties({"courseID", "courseName"})
     public String getInstanceName() {
-        return String.format("%s:%s", courseID, courseName);
+        return String.format("%s",courseName);
     }
 }

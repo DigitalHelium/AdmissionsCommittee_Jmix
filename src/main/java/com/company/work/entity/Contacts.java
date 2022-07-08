@@ -14,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.UUID;
 
@@ -26,10 +27,12 @@ public class Contacts {
     @Id
     private UUID id;
 
+    @Pattern(message = "Неверный формат номера",regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")
     @Column(name = "MAIN_PHONE_NUM", nullable = false, length = 20)
     @NotNull
     private String mainPhoneNum;
 
+    @Pattern(message = "Неверный формат номера",regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")
     @Column(name = "SECONDARY_PHONE_NUM", length = 20)
     private String secondaryPhoneNum;
 

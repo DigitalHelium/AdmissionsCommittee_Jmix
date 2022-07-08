@@ -26,12 +26,16 @@
                 <property name="middleName" fetch="AUTO"/>
                 <property name="scoreSumOfThreeSubjects" fetch="AUTO"/>
                 <property name="birthDate" fetch="AUTO"/>
+                <property name="desiredCourses">
+                    <property name="priority" fetch="AUTO"/>
+                </property>
             </fetchPlan>
         </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+        <timer id="timer" delay="10000"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -74,6 +78,7 @@
                 <column id="middleName" caption="msg://com.company.work.entity/Student.middleName"/>
                 <column id="scoreSumOfThreeSubjects" caption="msg://com.company.work.entity/Student.scoreSumOfThreeSubjects"/>
                 <column id="birthDate" caption="msg://com.company.work.entity/Student.birthDate"/>
+                <column id="desiredCourses" caption="msg://com.company.work.entity/DesiredCourse.priority"/>
             </columns>
         </groupTable>
 
