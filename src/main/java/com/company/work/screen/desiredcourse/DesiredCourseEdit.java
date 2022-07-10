@@ -18,9 +18,11 @@ public class DesiredCourseEdit extends StandardEditor<DesiredCourse> {
     public void onInitEntity(InitEntityEvent<DesiredCourse> event) {
         int priority = 1;
         Set<DesiredCourse> courses = event.getEntity().getStudent().getDesiredCourses();
-        while(isCoursesContainsPriority(courses, priority))
-            priority++;
-        event.getEntity().setPriority(priority);
+        if(courses!=null) {
+            while (isCoursesContainsPriority(courses, priority))
+                priority++;
+            event.getEntity().setPriority(priority);
+        }
     }
     private boolean isCoursesContainsPriority(Set<DesiredCourse> courses, int priority){
         boolean isContains = false;

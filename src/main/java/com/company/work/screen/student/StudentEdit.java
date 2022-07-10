@@ -51,13 +51,17 @@ public class StudentEdit extends StandardEditor<Student> {
 
     @Subscribe(id = "examResultsDc", target = Target.DATA_CONTAINER)
     public void onExamResultsDcCollectionChange(CollectionContainer.CollectionChangeEvent<ExamResults> event) {
-        getEditedEntity().setScoreSumOfThreeSubjects(sumScores(getEditedEntity()));
-        examResultsTableCreateButton.setEnabled(!isThreeExams(getEditedEntity()));
+        if(getEditedEntity().getExamResults()!=null) {
+            getEditedEntity().setScoreSumOfThreeSubjects(sumScores(getEditedEntity()));
+            examResultsTableCreateButton.setEnabled(!isThreeExams(getEditedEntity()));
+        }
     }
 
     @Subscribe(id = "desiredCoursesDc", target = Target.DATA_CONTAINER)
     public void onDesiredCoursesDcCollectionChange(CollectionContainer.CollectionChangeEvent<DesiredCourse> event) {
-        desiredCourseTableCreateButton.setEnabled(!isThreeCourses(getEditedEntity()));
+        if(getEditedEntity().getDesiredCourses()!=null) {
+            desiredCourseTableCreateButton.setEnabled(!isThreeCourses(getEditedEntity()));
+        }
     }
 
     @Subscribe
@@ -75,7 +79,7 @@ public class StudentEdit extends StandardEditor<Student> {
                     .show();
         }
     }
-    private boolean isThreeExams(Student stud){
+     private boolean isThreeExams(Student stud){
         return stud.getExamResults().size()>=3;
     }
     private boolean isThreeCourses(Student stud){
