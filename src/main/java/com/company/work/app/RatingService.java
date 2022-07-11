@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,6 +44,27 @@ public class RatingService {
             log.warn("students size NEW = "+studentRating.getStudents().size());
             log.warn("isNewStudInList= "+studentRating.getStudents().contains(newStud));
             dataManager.save(studentRating);
+        }
+    }
+    public void removeStudentFromRating(Student stud){
+        List<StudentRating> ratings = dataManager.load(StudentRating.class).all().list();
+        for(StudentRating sr:ratings){
+            boolean isContain = false;
+            if(sr.getStudents().contains(stud)){
+                for(DesiredCourse dc:stud.getDesiredCourses()){
+                    if (dc.getDesiredCourse() == sr.getCourse()) {
+                        isContain = true;
+                        break;
+                    }
+                }
+                if(!isContain){
+                    Set<Student> students =sr.getStudents();
+                    students.remove(stud);
+                    log.warn("students size NEW = "+sr.getStudents().size());
+                    log.warn("isOLDStudInList= "+sr.getStudents().contains(stud));
+                    dataManager.save(sr);
+                }
+            }
         }
     }
     public void addNewCourseToRating(Course newCourse){

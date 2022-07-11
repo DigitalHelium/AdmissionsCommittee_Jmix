@@ -82,6 +82,8 @@
             </columns>
         </groupTable>
 
+        <slider min="1000" max="10000" datatype="int"  id="timerDelaySlider" caption="msg://com.company.work.screen.studentrating/timerFieldCaption"/>
+
 
     </layout>
 </window>

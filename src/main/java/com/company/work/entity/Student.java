@@ -86,7 +86,7 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     @OnDeleteInverse(DeletePolicy.UNLINK)
-    @OnDelete(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
     @Composition
     private Set<DesiredCourse> desiredCourses;
 

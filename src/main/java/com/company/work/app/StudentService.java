@@ -1,14 +1,14 @@
 package com.company.work.app;
 
-import com.company.work.entity.ExamResults;
-import com.company.work.entity.Student;
-import com.company.work.entity.StudentRating;
+import com.company.work.entity.*;
 import io.jmix.core.DataManager;
 import io.jmix.ui.component.data.TableItems;
+import io.jmix.ui.model.CollectionContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
 public class StudentService {
@@ -26,5 +26,22 @@ public class StudentService {
         catch (IllegalStateException e){
             return 1;
         }
+    }
+    public void setStudentsDcList(CollectionContainer<Student> studentsDc, Course currentlySelectedCourse){
+        studentsDc.getMutableItems().sort((o1, o2) -> {
+            if(o1.getScoreSumOfThreeSubjects()>o2.getScoreSumOfThreeSubjects())
+                return -1;
+            if(o1.getScoreSumOfThreeSubjects()< o2.getScoreSumOfThreeSubjects())
+                return 1;
+            return Integer.compare(getPriority(o2, currentlySelectedCourse), getPriority(o1, currentlySelectedCourse));
+        });
+    }
+    private int getPriority(Student stud, Course currentlySelectedCourse){
+        if(currentlySelectedCourse !=null) {
+            for (DesiredCourse dc : stud.getDesiredCourses())
+                if (dc.getDesiredCourse() == currentlySelectedCourse)
+                    return dc.getPriority();
+        }
+        return 0;
     }
 }
