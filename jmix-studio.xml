@@ -33,6 +33,22 @@
           <option name="url" value="jdbc:hsqldb:file:.jmix/hsqldb/work" />
           <option name="user" value="sa" />
         </SavedDbProperties>
+        <SavedDbProperties>
+          <option name="databaseName" value="Work" />
+          <option name="dbType" value="postgres" />
+          <option name="dbmsVersion" />
+          <option name="host" value="localhost" />
+          <option name="pass" value="root" />
+          <option name="url" value="jdbc:postgresql://localhost/Work" />
+          <option name="user" value="postgres" />
+        </SavedDbProperties>
+        <SavedDbProperties>
+          <option name="databaseName" value="Work" />
+          <option name="dbType" value="hsqlinmem" />
+          <option name="dbmsVersion" />
+          <option name="url" value="jdbc:hsqldb:mem:Work" />
+          <option name="user" value="sa" />
+        </SavedDbProperties>
       </list>
     </option>
   </component>

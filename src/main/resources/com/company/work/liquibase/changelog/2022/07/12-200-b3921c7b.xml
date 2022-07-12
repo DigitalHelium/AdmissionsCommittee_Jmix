@@ -48,6 +48,21 @@
         </modifySql>
     </changeSet>
     <changeSet id="5" author="Work">
+        <dropIndex indexName="idx_uc_contacts_main_phone_num" tableName="contacts"/>
+    </changeSet>
+    <changeSet id="6" author="Work">
+        <dropColumn columnName="admissions_committee_id" tableName="student"/>
+    </changeSet>
+    <changeSet id="7" author="Work">
+        <dropColumn columnName="admissions_committee_id" tableName="student_rating"/>
+    </changeSet>
+    <changeSet id="8" author="Work">
+        <dropColumn columnName="is_full_time" tableName="desired_course"/>
+    </changeSet>
+    <changeSet id="9" author="Work">
         <dropColumn columnName="subject_name" tableName="exam_results"/>
+    </changeSet>
+    <changeSet id="10" author="Work">
+        <dropNotNullConstraint columnDataType="uuid" columnName="STUDENT_ID" tableName="EXAM_RESULTS"/>
     </changeSet>
 </databaseChangeLog>

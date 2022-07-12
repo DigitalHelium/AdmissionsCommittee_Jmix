@@ -26,7 +26,6 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "STUDENT", indexes = {
         @Index(name = "IDX_STUDENT_CONTACTS_ID", columnList = "CONTACTS_ID"),
-        @Index(name = "IDX_STUDENT", columnList = "ADMISSIONS_COMMITTEE_ID")
 })
 @Entity
 public class Student {
