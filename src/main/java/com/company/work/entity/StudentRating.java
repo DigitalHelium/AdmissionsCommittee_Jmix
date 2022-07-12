@@ -30,7 +30,7 @@ public class StudentRating {
     private UUID id;
 
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.UNLINK)
+    @OnDelete(DeletePolicy.CASCADE)
     @JoinColumn(name = "COURSE_ID", nullable = false)
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)

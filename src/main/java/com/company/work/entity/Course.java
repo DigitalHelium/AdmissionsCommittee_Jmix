@@ -1,8 +1,11 @@
 package com.company.work.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -78,6 +81,8 @@ public class Course {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.CASCADE)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "course")
     private StudentRating studentRating;
 
